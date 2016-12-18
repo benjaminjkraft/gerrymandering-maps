@@ -11,6 +11,10 @@ all: $(TARGETS)
 view: all
 	ls *.pdf | grep 'map-[0-9].pdf' | xargs evince
 
+release: all
+	git tag $(VERSION)
+	zip gerrymandering-maps-$(VERSION).zip README.md notes.pdf map-*.pdf
+
 map-0.pdf: map-0.tex map-0.png
 	pdflatex map-0.tex
 
